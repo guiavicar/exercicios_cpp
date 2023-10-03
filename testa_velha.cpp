@@ -37,5 +37,14 @@ TEST_CASE( "Testa velha", "[single-file]" ) {
 					   };
 		REQUIRE( VerificaVelha(teste_combinacao_diagonal) == 1 );
 	};
+	SECTION("testa empate"){
+		int teste_empate[3][3] = {
+						   {1, 2, 1},
+						   {1, 2, 2},
+						   {2, 1, 1}
+
+					   };
+		REQUIRE( VerificaVelha(teste_empate) == 0 );
+	};
 }
  
