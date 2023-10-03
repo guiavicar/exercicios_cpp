@@ -1,6 +1,7 @@
 ﻿    Este Programa verifica um jogo da velha 
-    -Para compilar e executar basta um 'make all' no terminal com isso executará 
+    -Para compilar e executar basta um 'make all' no terminal dentro desse diretorio e com isso executará 
 todos os testes e tambem compilará o codigo
+    -Este programa possui uma pasta .vscode caso o corretor usar o editor. se nao for usar basta ignorar
     -Os testes estao no arquivo testa_velha.cpp nos outros arquivos voce encontrara o head que declara a funcao principal "VerificaVelha"
 e no arquivo velha.cpp é escrita toda a funcao com as funcoes e os detalhes comentados.
     -Nesse programa é utilizado o Catch2, cpplint e o Makefile! 
