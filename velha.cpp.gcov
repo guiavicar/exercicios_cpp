@@ -1,0 +1,77 @@
+        -:    0:Source:velha.cpp
+        -:    1:/**
+        -:    2: * \file  velha.cpp
+        -:    3: */
+        -:    4:
+        -:    5:#include "velha.hpp"
+        -:    6:
+        -:    7:
+        -:    8:/** 
+        -:    9: * @brief verifica situacao do jogo da velha  
+        -:   10: * @author Guilherme de Avila
+        -:   11: * @param  velha uma matriz 3 por 3
+        -:   12: */
+        -:   13:
+        6:   14:int VerificaVelha( int velha[3][3] ) /*funcao principal que verica a situacao de uma partida de jogo da velha*/
+        -:   15:{	
+        -:   16:	/*-------Contador-------*/
+        6:   17:	int X = 0;
+        6:   18:	int O = 0;
+        6:   19:	int vazio = 0;
+        -:   20:	int variacao; /*variacao entre a quantidade de X e de O*/
+       24:   21:	for (int i=0 ; i<3 ; i++) { 
+       72:   22:		for (int j=0 ; j<3 ; j++){ /*conta a quantidade de casas vazias*/
+       54:   23:			if (velha[i][j] == 0){
+       12:   24:				vazio = vazio + 1;
+        -:   25:			}
+       54:   26:			if (velha[i][j] == 1){ /*conta a quantidade de casas com um X*/
+       20:   27:				X= X + 1;
+        -:   28:			}
+       54:   29:			if (velha[i][j] == 2){ /*conta a quantidade de casas com um O*/
+       22:   30:				O= O + 1;
+        -:   31:			}
+        -:   32:		}
+        -:   33:	}
+        -:   34:	/*transforma um possivel numero negativo em positivo*/
+        6:   35:	variacao = X-O;
+        6:   36:	if (variacao < 0) {
+        1:   37:		variacao = variacao * -1;
+        -:   38:	}
+        -:   39:	/*------impossivel------*/
+        -:   40:
+        6:   41:	if (variacao >= 2) { /*este e o primeiro caso. se em qualquer hipotese houver mais que dois marcadores (X ou O) ja é configurado como impossivel*/
+        1:   42:		return (-2);
+        -:   43:	}
+        -:   44:
+        -:   45:	/*-------horizontal-------*/
+       18:   46:	for (int i=0 ; i<3 ; i++) {
+        -:   47:
+       14:   48:		if (velha[i][0] == velha[i][1] && velha[i][0] == velha[i][2] && velha[i][0]!=0) /*criterios que identificam uma combinacao horizontal excluindo uma combinacao nula*/
+        -:   49:		{  /* verificando se existe uma combinaçao na horizontal*/
+        1:   50:			return (velha[i][1]); 	/*retorna o tipo da combinacao vencedora*/
+        -:   51:		}
+        -:   52:	} 
+        -:   53:	/*-------vertical--------*/
+       13:   54:	for (int j=0 ; j<3 ; j++) {
+        -:   55:
+       10:   56:		if (velha[0][j] == velha[1][j] && velha[0][j] == velha[2][j] && velha[0][j]!=0) /*criterios que identificam uma combinacao vertical excluindo uma combinacao nula*/
+        -:   57:		{ /* verificando se existe uma combinaçao na vertical*/
+        1:   58:			return(velha[1][j]); /*retorna o tipo da combinacao vencedora */
+        -:   59:		}
+        -:   60:	}
+        -:   61:	/*-------diagonal---------*/
+       3*:   62:	if ((velha[0][0] == velha[1][1] && velha[0][0] == velha[2][2] && velha[0][0]!=0) || (velha[0][2] == velha[1][1] && velha[0][2] == velha[2][0] && velha[0][2]!=0)) /*criterios que identificam uma cominacao diagonal que exclui uma combinacao nula*/
+        -:   63:	{
+        1:   64:			return(velha[1][1]);
+        -:   65:	}
+        -:   66:	/*-----indefinido--------*/
+        2:   67:	if (vazio>0) {
+        1:   68:		return(-1); /*com a ajuda das definicoes anteriores, agora em qualquer situaçao que aparecer um espaco vazio ja se configura como indefinido*/
+        -:   69:	}				/*exemplo: existindo uma matriz que falta ainda um espaco, que ainda nao tem um ganhador e nao é uma partida impossivel, significa que alguem ainda precisa jogar, logo indeterminado*/
+        -:   70:
+        -:   71: 
+        -:   72:	/*-----empate--------*/
+        -:   73:	else {
+        1:   74:		return(0); /*nesse ultimo caso toda e qualquer situacao que nao foi filtrada nas situacoes anteriores se configurará em um empate ou "velha"*/
+        -:   75:	}
+        -:   76:}

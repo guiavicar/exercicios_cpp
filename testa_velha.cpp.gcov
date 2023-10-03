@@ -1,0 +1,64 @@
+        -:    0:Source:testa_velha.cpp
+        -:    1:
+        -:    2:/**
+        -:    3: * \file testa_velha.cpp
+        -:    4: */
+        -:    5:
+        -:    6:#include "velha.hpp"
+        -:    7:
+        -:    8:#define CATCH_CONFIG_MAIN
+        -:    9:#include "catch.hpp"
+        -:   10:
+        -:   11:/*nesse programa todas as situacoes se encaixam em algum criterio. Logo, nenhum teste falha de forma proposital*/
+        -:   12:
+        6:   13:TEST_CASE("Testa velha", "[single-file]"){
+        7:   14:	SECTION("testa horizontal"){
+        1:   15:		int teste_combinacao_horizontal[3][3]= {/* esse teste representa a situacao perfeita para verificar se a analize horizontal esta correta*/
+        -:   16:		 				  { 1, 0, 1 },
+        -:   17:	                      { 2, 2, 2 },
+        -:   18:						  { 0, 1, 0 }
+        -:   19:					  };
+       1*:   20:    	REQUIRE(VerificaVelha(teste_combinacao_horizontal) == 2 );/*nessa situacao quem ganha o jogo é o "O" e tem como codigo o 2*/
+        -:   21:	};
+        -:   22:
+        7:   23:	SECTION("Testa vertical", "[single-file]"){
+        1:   24:		int teste_combinacao_vertical[3][3]={/* esse teste representa a situacao perfeita para verificar se a analize vertical esta correta*/
+        -:   25:						  {1, 0, 2},
+        -:   26:						  {1, 2, 0},
+        -:   27:						  {1, 0, 2}
+        -:   28:					  };
+       1*:   29:		REQUIRE(VerificaVelha(teste_combinacao_vertical) == 1 ); /*nessa situacao quem ganha o jogo é o "X" e tem como codigo o 1*/
+        -:   30:	};
+        7:   31:	SECTION("testa diagonal"){
+        1:   32:		int teste_combinacao_diagonal[3][3] = { /*essa situacao representa uma vitoria na diagonal pelo X*/
+        -:   33:						   {1, 2, 2},
+        -:   34:						   {0, 1, 0},
+        -:   35:						   {2, 0, 1}
+        -:   36:					   };
+       1*:   37:		REQUIRE(VerificaVelha(teste_combinacao_diagonal) == 1 );/*o ganhador foi o "X" e tem como codigo o 1*/
+        -:   38:	};
+        7:   39:	SECTION("testa empate"){
+        1:   40:		int teste_empate[3][3] = { /*essa situacao representa o "velha" ou empate*/
+        -:   41:						   {1, 2, 2},
+        -:   42:						   {2, 1, 1},
+        -:   43:						   {1, 1, 2}
+        -:   44:					   };
+       1*:   45:		REQUIRE(VerificaVelha(teste_empate) == 0 ); /*a situacao de empate tem o codigo 0*/
+        -:   46:	};
+        7:   47:	SECTION("testa impossivel"){
+        1:   48:		int teste_impossivel[3][3] = { /*essa é uma situacao impossivel de acontecer no jogo (6 "O" posicionadas contra 3 "X")*/
+        -:   49:						   {1, 2, 1},
+        -:   50:						   {1, 2, 2},
+        -:   51:						   {2, 2, 2}
+        -:   52:		};
+       1*:   53:		REQUIRE (VerificaVelha(teste_impossivel) == -2); /*o resultado impossivel tem como codigo o -2*/
+        -:   54:	}
+        7:   55:	SECTION("testa indefinido"){
+        1:   56:		int teste_indefinido[3][3] = { /*essa situacao representa um jogo que ainda nao se definiu e provavelmente tem mais rodadas a se jogar*/
+        -:   57:						   {2, 1, 1},
+        -:   58:						   {2, 2, 0},
+        -:   59:						   {1, 0, 0}
+        -:   60:		};
+       1*:   61:		REQUIRE (VerificaVelha(teste_indefinido) == -1); /*o codigo pra partida indefinida é -1*/
+        -:   62:	}
+        6:   63:}
