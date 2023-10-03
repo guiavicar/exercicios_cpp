@@ -27,6 +27,15 @@ TEST_CASE( "Testa velha", "[single-file]" ) {
 						  {1, 0, 0}
 					  };
 		REQUIRE( VerificaVelha(teste_combinacao_vertical) == 1 );
-	}
+	};
+	SECTION("testa diagonal"){
+		int teste_combinacao_diagonal[3][3] = {
+						   {1, 0, 0},
+						   {0, 1, 0},
+						   {0, 0, 1}
+
+					   };
+		REQUIRE( VerificaVelha(teste_combinacao_diagonal) == 1 );
+	};
 }
  
