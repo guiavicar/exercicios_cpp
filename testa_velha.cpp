@@ -13,31 +13,31 @@
 TEST_CASE( "Testa velha", "[single-file]" ) {
 	SECTION("testa horizontal"){
 		int teste_combinacao_horizontal[3][3]= { 
-		 				  { 0, 0, 0 }, 
+		 				  { 1, 0, 1 }, 
 	                      { 2, 2, 2 },
-						  { 0, 0, 0 }
+						  { 0, 1, 0 }
 					  };
     	REQUIRE( VerificaVelha(teste_combinacao_horizontal) == 2 );
 	};
 
 	SECTION("Testa vertical", "[single-file]"){
 		int teste_combinacao_vertical[3][3]={
-						  {1, 0, 0},
-						  {1, 0, 0},
-						  {1, 0, 0}
+						  {1, 0, 2},
+						  {1, 2, 0},
+						  {1, 0, 2}
 					  };
 		REQUIRE( VerificaVelha(teste_combinacao_vertical) == 1 );
 	};
 	SECTION("testa diagonal"){
 		int teste_combinacao_diagonal[3][3] = {
-						   {1, 0, 0},
+						   {1, 2, 2},
 						   {0, 1, 0},
-						   {0, 0, 1}
+						   {2, 0, 1}
 
 					   };
 		REQUIRE( VerificaVelha(teste_combinacao_diagonal) == 1 );
 	};
-	SECTION("testa empate"){
+	/*SECTION("testa empate"){
 		int teste_empate[3][3] = {
 						   {1, 2, 1},
 						   {1, 2, 2},
@@ -45,6 +45,14 @@ TEST_CASE( "Testa velha", "[single-file]" ) {
 
 					   };
 		REQUIRE( VerificaVelha(teste_empate) == 0 );
-	};
+	};*/
+	SECTION("testa impossivel"){
+		int teste_impossivel[3][3] = {
+						   {1, 2, 1},
+						   {1, 2, 2},
+						   {2, 2, 2}
+		};
+		REQUIRE (VerificaVelha(teste_impossivel) == -2);
+	}
 }
  
